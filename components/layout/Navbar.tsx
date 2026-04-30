@@ -43,10 +43,9 @@ export default function Navbar({ userName }: { userName: string }) {
         <div className="flex items-center gap-3">
           <span className="text-sm text-gray-600 hidden sm:block">Salam, {userName}</span>
           <Button
-            variant="ghost"
             size="sm"
             onClick={() => signOut({ callbackUrl: "/" })}
-            className="text-gray-600"
+            className="bg-blue-600 text-white hover:bg-blue-700"
           >
             Çykmak
           </Button>

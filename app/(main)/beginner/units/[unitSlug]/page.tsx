@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import Breadcrumb from "@/components/layout/Breadcrumb";
 
 export default async function UnitPage({ params }: { params: Promise<{ unitSlug: string }> }) {
   const { unitSlug } = await params;
@@ -33,10 +34,12 @@ export default async function UnitPage({ params }: { params: Promise<{ unitSlug:
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <Link href="/beginner" className="text-sm text-gray-500 hover:text-gray-700">
-          ← Başlangyç
-        </Link>
-        <h1 className="text-2xl font-bold text-gray-900 mt-2">{unit.titleTk}</h1>
+        <Breadcrumb items={[
+          { label: "Derejeler", href: "/levels" },
+          { label: "Başlangyç", href: "/beginner" },
+          { label: unit.titleTk },
+        ]} />
+        <h1 className="text-2xl font-bold text-gray-900 mt-3">{unit.titleTk}</h1>
         <p className="text-gray-600 mt-1">{unit.titleEn}</p>
         <p className="text-sm text-gray-500 mt-2">{unit.description}</p>
       </div>

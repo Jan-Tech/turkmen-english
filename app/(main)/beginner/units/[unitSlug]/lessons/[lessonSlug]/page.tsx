@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import LessonContent from "@/components/learning/LessonContent";
 import { LessonContentData } from "@/types/content";
+import Breadcrumb from "@/components/layout/Breadcrumb";
 
 interface LessonData {
   id: string;
@@ -69,13 +70,13 @@ export default function LessonPage() {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <Link
-          href={`/beginner/units/${unitSlug}`}
-          className="text-sm text-gray-500 hover:text-gray-700"
-        >
-          ← {lesson.unitTitle}
-        </Link>
-        <h1 className="text-2xl font-bold text-gray-900 mt-2">{lesson.titleTk}</h1>
+        <Breadcrumb items={[
+          { label: "Derejeler", href: "/levels" },
+          { label: "Başlangyç", href: "/beginner" },
+          { label: lesson.unitTitle, href: `/beginner/units/${unitSlug}` },
+          { label: lesson.titleTk },
+        ]} />
+        <h1 className="text-2xl font-bold text-gray-900 mt-3">{lesson.titleTk}</h1>
         <p className="text-gray-500">{lesson.titleEn}</p>
       </div>
 
