@@ -1,0 +1,206 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── AUTH ──────────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String?  @unique
+  phone        String?  @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  lessonProgress    LessonProgress[]
+  quizAttempts      QuizAttempt[]
+  testAttempts      TestAttempt[]
+  vocabProgress     VocabWordProgress[]
+
+  @@index([email])
+  @@index([phone])
+}
+
+// ─── CONTENT ───────────────────────────────────────────────────────────────
+
+enum LevelSlug {
+  BEGINNER
+  ELEMENTARY
+}
+
+model CourseLevel {
+  id          String    @id @default(cuid())
+  level       LevelSlug @unique
+  titleEn     String
+  titleTk     String
+  description String
+  order       Int
+
+  units   Unit[]
+  bigTest BigTest?
+}
+
+model Unit {
+  id          String      @id @default(cuid())
+  levelId     String
+  level       CourseLevel @relation(fields: [levelId], references: [id])
+  unitNumber  Int
+  slug        String      @unique
+  titleEn     String
+  titleTk     String
+  description String
+  order       Int
+
+  lessons        Lesson[]
+  quiz           Quiz?
+  lessonProgress LessonProgress[]
+
+  @@unique([levelId, unitNumber])
+  @@index([levelId])
+}
+
+model Lesson {
+  id           String @id @default(cuid())
+  unitId       String
+  unit         Unit   @relation(fields: [unitId], references: [id])
+  lessonNumber Int
+  slug         String @unique
+  titleEn      String
+  titleTk      String
+  content      Json
+  order        Int
+
+  lessonProgress LessonProgress[]
+
+  @@unique([unitId, lessonNumber])
+  @@index([unitId])
+}
+
+model Quiz {
+  id      String @id @default(cuid())
+  unitId  String @unique
+  unit    Unit   @relation(fields: [unitId], references: [id])
+  titleTk String
+
+  questions QuizQuestion[]
+  attempts  QuizAttempt[]
+}
+
+model BigTest {
+  id      String      @id @default(cuid())
+  levelId String      @unique
+  level   CourseLevel @relation(fields: [levelId], references: [id])
+  titleTk String
+
+  questions QuizQuestion[]
+  attempts  TestAttempt[]
+}
+
+model QuizQuestion {
+  id            String   @id @default(cuid())
+  quizId        String?
+  quiz          Quiz?    @relation(fields: [quizId], references: [id])
+  bigTestId     String?
+  bigTest       BigTest? @relation(fields: [bigTestId], references: [id])
+  order         Int
+  questionText  String
+  questionType  String
+  options       Json
+  correctIndex  Int
+  explanationTk String?
+
+  @@index([quizId])
+  @@index([bigTestId])
+}
+
+// ─── VOCABULARY ────────────────────────────────────────────────────────────
+
+model VocabSection {
+  id         String @id @default(cuid())
+  weekNumber Int    @unique
+  titleEn    String
+  titleTk    String
+  order      Int
+
+  words VocabWord[]
+}
+
+model VocabWord {
+  id           String       @id @default(cuid())
+  sectionId    String
+  section      VocabSection @relation(fields: [sectionId], references: [id])
+  wordEn       String
+  wordTk       String
+  partOfSpeech String
+  exampleEn    String
+  exampleTk    String
+  order        Int
+
+  progress VocabWordProgress[]
+
+  @@index([sectionId])
+}
+
+// ─── PROGRESS ──────────────────────────────────────────────────────────────
+
+model LessonProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId    String
+  lesson      Lesson   @relation(fields: [lessonId], references: [id])
+  unitId      String
+  unit        Unit     @relation(fields: [unitId], references: [id])
+  completedAt DateTime @default(now())
+
+  @@unique([userId, lessonId])
+  @@index([userId])
+}
+
+model QuizAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quizId      String
+  quiz        Quiz     @relation(fields: [quizId], references: [id])
+  score       Int
+  total       Int
+  answers     Json
+  completedAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([quizId])
+}
+
+model TestAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bigTestId   String
+  bigTest     BigTest  @relation(fields: [bigTestId], references: [id])
+  score       Int
+  total       Int
+  answers     Json
+  passed      Boolean
+  completedAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model VocabWordProgress {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  wordId    String
+  word      VocabWord @relation(fields: [wordId], references: [id])
+  learnedAt DateTime  @default(now())
+
+  @@unique([userId, wordId])
+  @@index([userId])
+}
