@@ -27,13 +27,13 @@ export default function HomePage() {
           Türkmen dilinde düşündirilýär
         </Badge>
         <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
-          Iňlis dilini öwreniň,
+          <span className="text-blue-600">Türkmen dilinde</span>
           <br />
-          <span className="text-blue-600">öz diliňizde</span>
+          Iňlis dilini öwreniň
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
-          Başlangyçdan Ýokary Derejeä çenli ähli sapaklary Türkmen dilinde düşündiriş bilen öwreniň.
-          Her bölümde synaglar we 504 esasy söz bilen güýçleniň.
+          Başlangyçdan Ýokary Derejä çenli ähli sapaklary Türkmen dilinde düşündiriş bilen öwreniň.
+          Her bölümde synaglar hem bar.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/register">
