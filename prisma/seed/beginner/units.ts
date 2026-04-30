@@ -13,23 +13,23 @@ export const beginnerUnits: SeedUnit[] = [
         lessonNumber: 1,
         slug: "beginner-u01-l01-hello-goodbye",
         titleEn: "Hello and Goodbye",
-        titleTk: "Salam we Hoş",
+        titleTk: "Salamlaşmak we Hoşlaşmak",
         content: {
           blocks: [
             { type: "explanation", data: { titleTk: "Giriş", bodyTk: "Iňlis dilinde salam bermek günüň wagtyna görä tapawutlanýar. 'Hello' islendik wagt ulanylyp bilner, emma 'Good morning', 'Good afternoon' we 'Good evening' has resmi salam beriş usullarydyr. Biri-biriňizden aýrylanyňyzda 'Goodbye', 'Bye' ýa-da 'See you later' diýilýär." } },
             { type: "vocabulary_list", data: { titleTk: "Esasy Sözler", words: [
               { en: "Hello", tk: "Salam", partOfSpeech: "noun", exampleEn: "Hello! How are you?", exampleTk: "Salam! Nähili ýagdaýyňyz?" },
-              { en: "Good morning", tk: "Hoş irden", partOfSpeech: "noun", exampleEn: "Good morning, teacher!", exampleTk: "Hoş irden, mugallym!" },
-              { en: "Good afternoon", tk: "Hoş gün", partOfSpeech: "noun", exampleEn: "Good afternoon! Come in.", exampleTk: "Hoş gün! Içeri giriň." },
-              { en: "Good evening", tk: "Hoş agşam", partOfSpeech: "noun", exampleEn: "Good evening, everyone.", exampleTk: "Hoş agşam, hemmeler." },
+              { en: "Good morning", tk: "Ertiriniz haýyrly (irden sagat 12-e çenli)", partOfSpeech: "noun", exampleEn: "Good morning, teacher!", exampleTk: "Ertiriniz haýyrly, mugallym!" },
+              { en: "Good afternoon", tk: "Günüňiz haýyrly (sagat 12-den 6-a çenli)", partOfSpeech: "noun", exampleEn: "Good afternoon! Come in.", exampleTk: "Günüňiz haýyrly! Içeri giriň." },
+              { en: "Good evening", tk: "Agşamyňyz haýyrly (sagat 6-dan 9-10-a çenli)", partOfSpeech: "noun", exampleEn: "Good evening, everyone.", exampleTk: "Agşamyňyz haýyrly, hemmeler." },
               { en: "Goodbye", tk: "Hoş gal / Sag bol", partOfSpeech: "noun", exampleEn: "Goodbye! See you tomorrow.", exampleTk: "Hoş gal! Ertir görüşeris." },
               { en: "How are you?", tk: "Nähili ýagdaýyňyz?", partOfSpeech: "noun", exampleEn: "Hi! How are you today?", exampleTk: "Salam! Bu gün nähili?" },
               { en: "Fine, thank you", tk: "Gowy, sag boluň", partOfSpeech: "noun", exampleEn: "I'm fine, thank you!", exampleTk: "Men gowy, sag boluň!" },
               { en: "Nice to meet you", tk: "Tanşanymyza şat", partOfSpeech: "noun", exampleEn: "Nice to meet you, Merdan.", exampleTk: "Tanşanymyza şat, Merdan." },
             ]}},
             { type: "dialogue", data: { titleTk: "Söhbetdeşlik: Ilkinji duşuşyk", exchanges: [
-              { speakerEn: "Aýgül", lineEn: "Good morning! My name is Aýgül.", lineTk: "Hoş irden! Meniň adym Aýgül." },
-              { speakerEn: "Merdan", lineEn: "Good morning! I am Merdan. Nice to meet you.", lineTk: "Hoş irden! Men Merdan. Tanşanymyza şat." },
+              { speakerEn: "Aýgül", lineEn: "Good morning! My name is Aýgül.", lineTk: "Ertiriniz haýyrly! Meniň adym Aýgül." },
+              { speakerEn: "Merdan", lineEn: "Good morning! I am Merdan. Nice to meet you.", lineTk: "Ertiriniz haýyrly! Men Merdan. Tanşanymyza şat." },
               { speakerEn: "Aýgül", lineEn: "Nice to meet you too. How are you?", lineTk: "Mende-de. Nähili ýagdaýyňyz?" },
               { speakerEn: "Merdan", lineEn: "I'm fine, thank you! And you?", lineTk: "Gowy, sag boluň! Siziň ýagdaýyňyz?" },
               { speakerEn: "Aýgül", lineEn: "I'm very well, thank you!", lineTk: "Gaty gowy, sag boluň!" },
@@ -58,7 +58,7 @@ export const beginnerUnits: SeedUnit[] = [
               { en: "student", tk: "okuwçy / talypçy", partOfSpeech: "noun", exampleEn: "I am a student.", exampleTk: "Men okuwçy." },
               { en: "teacher", tk: "mugallym", partOfSpeech: "noun", exampleEn: "She is a teacher.", exampleTk: "Ol mugallym." },
             ]}},
-            { type: "grammar_note", data: { titleTk: "Grammatika: 'To be' — am / is / are", explanationTk: "'To be' Iňlis diliniň iň möhüm işligidir. I am (Men...), He/She/It is (Ol...), We/You/They are (Biz/Siz/Olar...). Türkmençedäki '-dyr/-dir' goşulmasyna meňzeşdir.", pattern: "I am / He·She·It is / We·You·They are", examples: [
+            { type: "grammar_note", data: { titleTk: "Grammatika: 'To be' — am / is / are", explanationTk: "'To be' Iňlis diliniň iň möhüm işligidir. I am (Men...), He is (Ol — oglana degişli), She is (Ol — gyza degişli), We/You/They are (Biz/Siz/Olar...). Türkmençedäki '-dyr/-dir' goşulmasyna meňzeşdir.", pattern: "I am / He·She·It is / We·You·They are", examples: [
               { en: "I am from Turkmenistan.", tk: "Men Türkmenistanly." },
               { en: "She is a doctor.", tk: "Ol lukman." },
               { en: "We are students.", tk: "Biz okuwçylar." },
@@ -75,7 +75,7 @@ export const beginnerUnits: SeedUnit[] = [
     quiz: {
       titleTk: "1-nji Bölüm Synagy: Salam bermek we tanyşmak",
       questions: [
-        { order: 1, questionText: "'Hoş irden' iňlisçe näme?", questionType: "translate_tk_en", options: ["Good evening", "Good afternoon", "Good morning", "Good night"], correctIndex: 2 },
+        { order: 1, questionText: "'Ertiriniz haýyrly' iňlisçe näme?", questionType: "translate_tk_en", options: ["Good evening", "Good afternoon", "Good morning", "Good night"], correctIndex: 2 },
         { order: 2, questionText: "What does 'Nice to meet you' mean?", questionType: "translate_en_tk", options: ["Hoş gal", "Tanşanymyza şat", "Sag boluň", "Nähili ýagdaý?"], correctIndex: 1 },
         { order: 3, questionText: "_____ am a student.", questionType: "multiple_choice_grammar", options: ["He", "She", "I", "They"], correctIndex: 2 },
         { order: 4, questionText: "'Goodbye' Türkmençede näme?", questionType: "translate_en_tk", options: ["Salam", "Hoş irden", "Hoş gal / Sag bol", "Minnetdar"], correctIndex: 2 },
