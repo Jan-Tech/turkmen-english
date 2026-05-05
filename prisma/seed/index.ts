@@ -220,9 +220,9 @@ async function seedLevel(
   bigTestQuestions: typeof beginnerBigTestQuestions
 ) {
   const level = await prisma.courseLevel.upsert({
-    where: { level: levelSlug },
+    where: { level: levelSlug as any },
     update: {},
-    create: { level: levelSlug, titleEn, titleTk, description, order },
+    create: { level: levelSlug as any, titleEn, titleTk, description, order },
   });
 
   for (const unit of units) {
