@@ -1,6 +1,8 @@
 import { PrismaClient } from "../../app/generated/prisma";
 import { beginnerUnits } from "./beginner/units";
 import { elementaryUnits } from "./elementary/units";
+import { preIntermediateUnits } from "./pre-intermediate/units";
+import { intermediateUnits } from "./intermediate/units";
 import { weeks1to26 } from "./vocabulary/weeks1to26";
 import { weeks27to52 } from "./vocabulary/weeks27to52";
 import type { SeedUnit } from "../../types/content";
@@ -73,8 +75,74 @@ const elementaryBigTestQuestions = [
   { order: 30, questionText: "If it _____ rain, we will stay at home.", questionType: "multiple_choice_grammar", options: ["will", "would", "rains", "rained"], correctIndex: 2 },
 ];
 
+const preIntermediateBigTestQuestions = [
+  { order: 1, questionText: "I _____ here for five years. (work — Present Perfect)", questionType: "multiple_choice_grammar", options: ["work", "worked", "have worked", "am working"], correctIndex: 2 },
+  { order: 2, questionText: "'Go' işliginiň Past Participle görnüşi?", questionType: "multiple_choice_grammar", options: ["goed", "went", "going", "gone"], correctIndex: 3 },
+  { order: 3, questionText: "She has _____ finished the report. (ýaňy)", questionType: "multiple_choice_grammar", options: ["yet", "never", "just", "ever"], correctIndex: 2 },
+  { order: 4, questionText: "I have lived here _____ 2020.", questionType: "multiple_choice_grammar", options: ["for", "since", "ago", "from"], correctIndex: 1 },
+  { order: 5, questionText: "I think it _____ rain tomorrow. (çaklama)", questionType: "multiple_choice_grammar", options: ["going to", "is going to", "will", "shall"], correctIndex: 2 },
+  { order: 6, questionText: "She _____ going to study abroad — she applied already.", questionType: "multiple_choice_grammar", options: ["will", "is", "has", "was"], correctIndex: 1 },
+  { order: 7, questionText: "Ashgabat is _____ than Mary. (big)", questionType: "multiple_choice_grammar", options: ["more big", "biggest", "bigger", "most big"], correctIndex: 2 },
+  { order: 8, questionText: "This is _____ hotel in the city. (expensive)", questionType: "multiple_choice_grammar", options: ["more expensive", "expensivest", "the most expensive", "most expensive"], correctIndex: 2 },
+  { order: 9, questionText: "You _____ show your passport at the border. (borç)", questionType: "multiple_choice_grammar", options: ["should", "might", "must", "could"], correctIndex: 2 },
+  { order: 10, questionText: "You _____ come if you don't want to. (hökmany däl)", questionType: "multiple_choice_grammar", options: ["mustn't", "shouldn't", "don't have to", "might not"], correctIndex: 2 },
+  { order: 11, questionText: "She is the woman _____ helped me yesterday.", questionType: "multiple_choice_grammar", options: ["which", "where", "who", "whose"], correctIndex: 2 },
+  { order: 12, questionText: "This is the town _____ I was born.", questionType: "multiple_choice_grammar", options: ["who", "which", "where", "whose"], correctIndex: 2 },
+  { order: 13, questionText: "If you study hard, you _____ pass the exam.", questionType: "multiple_choice_grammar", options: ["would", "will", "should", "can"], correctIndex: 1 },
+  { order: 14, questionText: "If I were rich, I _____ travel the world.", questionType: "multiple_choice_grammar", options: ["will", "would", "should", "can"], correctIndex: 1 },
+  { order: 15, questionText: "She _____ TV when I arrived. (watch — Past Cont)", questionType: "multiple_choice_grammar", options: ["watched", "was watching", "is watching", "watches"], correctIndex: 1 },
+  { order: 16, questionText: "I was reading when the phone _____. (ring)", questionType: "multiple_choice_grammar", options: ["was ringing", "ringed", "rang", "rung"], correctIndex: 2 },
+  { order: 17, questionText: "Cars _____ in this factory. (make — passyw, häzirki)", questionType: "multiple_choice_grammar", options: ["made", "are made", "were made", "make"], correctIndex: 1 },
+  { order: 18, questionText: "The Eiffel Tower _____ in 1889. (build — passyw)", questionType: "multiple_choice_grammar", options: ["builds", "built", "is built", "was built"], correctIndex: 3 },
+  { order: 19, questionText: "He said he _____ tired. (present → past)", questionType: "multiple_choice_grammar", options: ["is", "are", "was", "were"], correctIndex: 2 },
+  { order: 20, questionText: "She told _____ she would be late.", questionType: "multiple_choice_grammar", options: ["that", "me", "to me", "say"], correctIndex: 1 },
+  { order: 21, questionText: "'Hünär derejesi' iňlisçe näme?", questionType: "translate_tk_en", options: ["experience", "skill", "qualification", "strength"], correctIndex: 2 },
+  { order: 22, questionText: "'Bronlamak' iňlisçe näme?", questionType: "translate_tk_en", options: ["travel", "arrive", "book", "pack"], correctIndex: 2 },
+  { order: 23, questionText: "'Ondan soň' iňlisçe näme?", questionType: "translate_tk_en", options: ["finally", "first", "after that", "unfortunately"], correctIndex: 2 },
+  { order: 24, questionText: "'Gadagan' iňlisçe näme?", questionType: "translate_tk_en", options: ["compulsory", "optional", "prohibited", "essential"], correctIndex: 2 },
+  { order: 25, questionText: "Have you ever _____ to Japan? (be)", questionType: "multiple_choice_grammar", options: ["go", "gone", "been", "went"], correctIndex: 2 },
+  { order: 26, questionText: "Unless you _____, you'll miss the train.", questionType: "multiple_choice_grammar", options: ["hurry", "will hurry", "hurried", "hurrying"], correctIndex: 0 },
+  { order: 27, questionText: "'Asuda' iňlisçe näme?", questionType: "translate_tk_en", options: ["crowded", "noisy", "modern", "quiet"], correctIndex: 3 },
+  { order: 28, questionText: "'Ygtybarly' iňlisçe näme?", questionType: "translate_tk_en", options: ["innovative", "efficient", "reliable", "fluent"], correctIndex: 2 },
+  { order: 29, questionText: "She _____ cooking when I called. (Past Cont)", questionType: "multiple_choice_grammar", options: ["cooked", "cooks", "was cooking", "is cooking"], correctIndex: 2 },
+  { order: 30, questionText: "'Discover' işliginiň passyw görnüşi — geçen? 'Penicillin _____ by Fleming.'", questionType: "multiple_choice_grammar", options: ["discovered", "is discovered", "was discovered", "has discovered"], correctIndex: 2 },
+];
+
+const intermediateBigTestQuestions = [
+  { order: 1, questionText: "She _____ English for three years. (learn — PPC)", questionType: "multiple_choice_grammar", options: ["learns", "has learnt", "has been learning", "is learning"], correctIndex: 2 },
+  { order: 2, questionText: "When I arrived, she _____ already left.", questionType: "multiple_choice_grammar", options: ["has", "have", "had", "was"], correctIndex: 2 },
+  { order: 3, questionText: "If I _____ earlier, I would have met her.", questionType: "multiple_choice_grammar", options: ["arrived", "had arrived", "have arrived", "arrive"], correctIndex: 1 },
+  { order: 4, questionText: "She must _____ tired — she worked all night.", questionType: "multiple_choice_grammar", options: ["be", "been", "have been", "being"], correctIndex: 2 },
+  { order: 5, questionText: "He can't _____ the email — he would have replied.", questionType: "multiple_choice_grammar", options: ["read", "be reading", "have read", "reads"], correctIndex: 2 },
+  { order: 6, questionText: "I enjoy _____ to new places. (travel)", questionType: "multiple_choice_grammar", options: ["travel", "to travel", "travelled", "travelling"], correctIndex: 3 },
+  { order: 7, questionText: "She decided _____ abroad. (study)", questionType: "multiple_choice_grammar", options: ["studying", "study", "to study", "studied"], correctIndex: 2 },
+  { order: 8, questionText: "I stopped _____ when the doctor advised me. (smoke)", questionType: "multiple_choice_grammar", options: ["smoke", "to smoke", "smoking", "smoked"], correctIndex: 2 },
+  { order: 9, questionText: "_____ it was raining, we continued the match.", questionType: "multiple_choice_grammar", options: ["Despite", "However", "Although", "Therefore"], correctIndex: 2 },
+  { order: 10, questionText: "The food was good. _____, the service was terrible.", questionType: "multiple_choice_grammar", options: ["Although", "Despite", "However", "Because"], correctIndex: 2 },
+  { order: 11, questionText: "She's coming tomorrow, _____ she?", questionType: "multiple_choice_grammar", options: ["is", "isn't", "was", "wasn't"], correctIndex: 1 },
+  { order: 12, questionText: "Let's go now, _____ we?", questionType: "multiple_choice_grammar", options: ["will", "won't", "shall", "should"], correctIndex: 2 },
+  { order: 13, questionText: "She is _____ engineer at _____ big company.", questionType: "multiple_choice_grammar", options: ["a / a", "an / a", "the / a", "an / the"], correctIndex: 1 },
+  { order: 14, questionText: "_____ life is full of surprises. (umumy many)", questionType: "multiple_choice_grammar", options: ["A", "The", "An", "(artikl ýok)"], correctIndex: 3 },
+  { order: 15, questionText: "'Give up' Türkmençede näme?", questionType: "translate_en_tk", options: ["Seretmek", "Taşlamak / el çekmek", "Anyklamak", "Döretmek"], correctIndex: 1 },
+  { order: 16, questionText: "She _____ her job offer because the salary was too low.", questionType: "multiple_choice_grammar", options: ["turned up", "turned down", "set up", "put off"], correctIndex: 1 },
+  { order: 17, questionText: "The new hospital _____ built at the moment. (häzirki dowam passyw)", questionType: "multiple_choice_grammar", options: ["is built", "is being built", "has been built", "was built"], correctIndex: 1 },
+  { order: 18, questionText: "It _____ that prices will rise next year.", questionType: "multiple_choice_grammar", options: ["says", "is said", "said", "has said"], correctIndex: 1 },
+  { order: 19, questionText: "How _____ time do we have?", questionType: "multiple_choice_grammar", options: ["many", "few", "much", "little"], correctIndex: 2 },
+  { order: 20, questionText: "I have _____ minutes — I can help you quickly. (biraz)", questionType: "multiple_choice_grammar", options: ["few", "a few", "little", "a little"], correctIndex: 1 },
+  { order: 21, questionText: "'Ikisi hem däl' iňlisçe näme?", questionType: "translate_tk_en", options: ["both", "either", "neither", "none"], correctIndex: 2 },
+  { order: 22, questionText: "A: You don't care! B: I _____ care about it!", questionType: "multiple_choice_grammar", options: ["am", "does", "do", "did"], correctIndex: 2 },
+  { order: 23, questionText: "It was Sarah _____ told me the news.", questionType: "multiple_choice_grammar", options: ["which", "where", "who", "whose"], correctIndex: 2 },
+  { order: 24, questionText: "'Under the weather' Türkmençede näme?", questionType: "translate_en_tk", options: ["Ýagşyň astynda", "Ýarawsyz duýmak", "Buzy döwmek", "Dişini gysyp çydamak"], correctIndex: 1 },
+  { order: 25, questionText: "'Break the ice' Türkmençede näme?", questionType: "translate_en_tk", options: ["Buzy döwmek (hakyky)", "Tanşyny ýeňilleşdirmek", "Kyn zady kabul etmek", "Nokat goýmak"], correctIndex: 1 },
+  { order: 26, questionText: "Remember _____ the door when you leave! (lock)", questionType: "multiple_choice_grammar", options: ["locking", "lock", "locked", "to lock"], correctIndex: 3 },
+  { order: 27, questionText: "He _____ be the manager — he looks 20 years old!", questionType: "multiple_choice_grammar", options: ["must", "can't", "might", "should"], correctIndex: 1 },
+  { order: 28, questionText: "Never _____ I seen such a thing!", questionType: "multiple_choice_grammar", options: ["I have", "have", "I had", "had"], correctIndex: 1 },
+  { order: 29, questionText: "'Significant' Türkmençede näme?", questionType: "translate_en_tk", options: ["Kiçi", "Möhüm / Düýpli", "Adaty", "Ýeterlik"], correctIndex: 1 },
+  { order: 30, questionText: "Despite _____ hard, he didn't pass. (work)", questionType: "multiple_choice_grammar", options: ["work", "to work", "worked", "working"], correctIndex: 3 },
+];
+
 async function seedLevel(
-  levelSlug: "BEGINNER" | "ELEMENTARY",
+  levelSlug: "BEGINNER" | "ELEMENTARY" | "PRE_INTERMEDIATE" | "INTERMEDIATE",
   titleEn: string,
   titleTk: string,
   description: string,
@@ -229,6 +297,30 @@ async function main() {
     elementaryUnits,
     "Başlangyç+ Derejesi — Jemleýji Synag",
     elementaryBigTestQuestions
+  );
+
+  console.log("Seeding Pre-Intermediate level...");
+  await seedLevel(
+    "PRE_INTERMEDIATE",
+    "Pre-Intermediate",
+    "Orta Öňi",
+    "Elementary derejesinden soň. Present Perfect, Future, Comparatives, Modals, Relative Clauses, Conditionals we has köp.",
+    3,
+    preIntermediateUnits,
+    "Orta Öňi Derejesi — Jemleýji Synag",
+    preIntermediateBigTestQuestions
+  );
+
+  console.log("Seeding Intermediate level...");
+  await seedLevel(
+    "INTERMEDIATE",
+    "Intermediate",
+    "Orta",
+    "Pre-Intermediate derejesinden soň. Present Perfect Continuous, Past Perfect, Modal Deduction, Gerunds, Linking Words we has köp.",
+    4,
+    intermediateUnits,
+    "Orta Derejesi — Jemleýji Synag",
+    intermediateBigTestQuestions
   );
 
   console.log("Seeding 504 vocabulary...");

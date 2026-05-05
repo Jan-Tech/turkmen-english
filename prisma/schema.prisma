@@ -32,6 +32,8 @@ model User {
 enum LevelSlug {
   BEGINNER
   ELEMENTARY
+  PRE_INTERMEDIATE
+  INTERMEDIATE
 }
 
 model CourseLevel {
