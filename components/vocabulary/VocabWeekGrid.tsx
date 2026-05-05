@@ -21,7 +21,7 @@ export default function VocabWeekGrid({ words, initialLearnedIds }: VocabWeekGri
   const [learnedIds, setLearnedIds] = useState(new Set(initialLearnedIds));
 
   function handleLearned(wordId: string) {
-    setLearnedIds((prev) => new Set([...prev, wordId]));
+    setLearnedIds((prev) => new Set(Array.from(prev).concat(wordId)));
   }
 
   return (
