@@ -34,6 +34,8 @@ enum LevelSlug {
   ELEMENTARY
   PRE_INTERMEDIATE
   INTERMEDIATE
+  UPPER_INTERMEDIATE
+  ADVANCED
 }
 
 model CourseLevel {

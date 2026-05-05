@@ -85,8 +85,8 @@ export default function HomePage() {
               { tk: "Başlangyç+", en: "Elementary", color: "bg-blue-100 text-blue-700" },
               { tk: "Orta öňi", en: "Pre-Intermediate", color: "bg-yellow-100 text-yellow-700" },
               { tk: "Orta", en: "Intermediate", color: "bg-orange-100 text-orange-700" },
-              { tk: "Ýokary Orta", en: "Upper-Intermediate", color: "bg-purple-100 text-purple-700", soon: true },
-              { tk: "Ýokary", en: "Advanced", color: "bg-red-100 text-red-700", soon: true },
+              { tk: "Ýokary Orta", en: "Upper-Intermediate", color: "bg-purple-100 text-purple-700" },
+              { tk: "Ýokary", en: "Advanced", color: "bg-red-100 text-red-700" },
             ].map((l) => (
               <div
                 key={l.en}

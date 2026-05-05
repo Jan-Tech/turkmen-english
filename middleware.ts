@@ -7,6 +7,8 @@ export const config = {
     "/elementary/:path*",
     "/pre-intermediate/:path*",
     "/intermediate/:path*",
+    "/upper-intermediate/:path*",
+    "/advanced/:path*",
     "/vocabulary/:path*",
     "/levels/:path*",
   ],

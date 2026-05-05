@@ -3,6 +3,8 @@ import { beginnerUnits } from "./beginner/units";
 import { elementaryUnits } from "./elementary/units";
 import { preIntermediateUnits } from "./pre-intermediate/units";
 import { intermediateUnits } from "./intermediate/units";
+import { upperIntermediateUnits } from "./upper-intermediate/units";
+import { advancedUnits } from "./advanced/units";
 import { weeks1to26 } from "./vocabulary/weeks1to26";
 import { weeks27to52 } from "./vocabulary/weeks27to52";
 import type { SeedUnit } from "../../types/content";
@@ -75,6 +77,72 @@ const elementaryBigTestQuestions = [
   { order: 30, questionText: "If it _____ rain, we will stay at home.", questionType: "multiple_choice_grammar", options: ["will", "would", "rains", "rained"], correctIndex: 2 },
 ];
 
+const upperIntermediateBigTestQuestions = [
+  { order: 1, questionText: "If I had studied medicine, I _____ a doctor now.", questionType: "multiple_choice_grammar", options: ["would be", "will be", "would have been", "had been"], correctIndex: 0 },
+  { order: 2, questionText: "I wish I _____ the answer! (know — häzir)", questionType: "multiple_choice_grammar", options: ["know", "knew", "had known", "would know"], correctIndex: 1 },
+  { order: 3, questionText: "If only I _____ that mistake! (make — geçmiş öküniç)", questionType: "multiple_choice_grammar", options: ["didn't make", "wouldn't make", "hadn't made", "haven't made"], correctIndex: 2 },
+  { order: 4, questionText: "You _____ told me — I was worried! (should have)", questionType: "multiple_choice_grammar", options: ["should tell", "should have told", "should told", "should telling"], correctIndex: 1 },
+  { order: 5, questionText: "She _____ a doctor but chose business instead. (could have)", questionType: "multiple_choice_grammar", options: ["could be", "could have been", "can have been", "could been"], correctIndex: 1 },
+  { order: 6, questionText: "I need to have my car _____ before the trip.", questionType: "multiple_choice_grammar", options: ["service", "serviced", "servicing", "to service"], correctIndex: 1 },
+  { order: 7, questionText: "I got my brother _____ my computer. (fix)", questionType: "multiple_choice_grammar", options: ["fix", "fixed", "to fix", "fixing"], correctIndex: 2 },
+  { order: 8, questionText: "_____ the door, he found a letter inside.", questionType: "multiple_choice_grammar", options: ["He opened", "Opening", "Opened", "Having open"], correctIndex: 1 },
+  { order: 9, questionText: "My sister, _____ lives in Istanbul, is visiting this weekend.", questionType: "multiple_choice_grammar", options: ["that", "which", "who", "whose"], correctIndex: 2 },
+  { order: 10, questionText: "Never _____ I seen such a beautiful place!", questionType: "multiple_choice_grammar", options: ["I have", "have", "I had", "had"], correctIndex: 1 },
+  { order: 11, questionText: "Not only _____ he fail, but he also lied.", questionType: "multiple_choice_grammar", options: ["he did", "did", "does", "he does"], correctIndex: 1 },
+  { order: 12, questionText: "She _____ a great speech at the ceremony. (make/do)", questionType: "multiple_choice_grammar", options: ["did", "told", "made", "said"], correctIndex: 2 },
+  { order: 13, questionText: "The data _____ a link between the two factors.", questionType: "multiple_choice_grammar", options: ["proves", "confirms", "suggests", "shows clearly"], correctIndex: 2 },
+  { order: 14, questionText: "To _____ with, let us examine the main issue.", questionType: "multiple_choice_grammar", options: ["start", "begin", "first", "initially"], correctIndex: 1 },
+  { order: 15, questionText: "She's coming tomorrow, _____ she?", questionType: "multiple_choice_grammar", options: ["is", "isn't", "was", "wasn't"], correctIndex: 1 },
+  { order: 16, questionText: "Let's go now, _____ we?", questionType: "multiple_choice_grammar", options: ["will", "won't", "shall", "should"], correctIndex: 2 },
+  { order: 17, questionText: "_____ it was raining, we continued.", questionType: "multiple_choice_grammar", options: ["Despite", "However", "Although", "Therefore"], correctIndex: 2 },
+  { order: 18, questionText: "'Admittedly' Türkmençede näme?", questionType: "translate_en_tk", options: ["Hökman", "Dogrusy / boýun almak bilen", "Mundan başga-da", "Tersine"], correctIndex: 1 },
+  { order: 19, questionText: "'Sustainable' Türkmençede näme?", questionType: "translate_en_tk", options: ["Tiz", "Durnukly / uzak möhletde saklanyp bilýän", "Gymmat", "Täze"], correctIndex: 1 },
+  { order: 20, questionText: "She suggested _____ a different approach.", questionType: "multiple_choice_grammar", options: ["to try", "try", "trying", "tried"], correctIndex: 2 },
+  { order: 21, questionText: "'Give up' Türkmençede näme?", questionType: "translate_en_tk", options: ["Bermek", "Taşlamak / el çekmek", "Gaýtarmak", "Almak"], correctIndex: 1 },
+  { order: 22, questionText: "'Heavy traffic' Türkmençede näme?", questionType: "translate_en_tk", options: ["Agyr ulag", "Ulag dyknyşygy", "Köp ýol", "Haýal ulag"], correctIndex: 1 },
+  { order: 23, questionText: "A: I love jazz. B: _____ do I!", questionType: "multiple_choice_grammar", options: ["Neither", "Nor", "So", "Not"], correctIndex: 2 },
+  { order: 24, questionText: "'A blessing in disguise' Türkmençede näme?", questionType: "translate_en_tk", options: ["Gizlin howp", "Başda ýaramaz görünýän, soňra peýdaly", "Galp bagt", "Kynçylyk"], correctIndex: 1 },
+  { order: 25, questionText: "_____ the outcome, we must remain professional.", questionType: "multiple_choice_grammar", options: ["However", "Whatever", "Whenever", "Whoever"], correctIndex: 1 },
+  { order: 26, questionText: "Were _____ not for your support, this would have failed.", questionType: "multiple_choice_grammar", options: ["this", "it", "that", "there"], correctIndex: 1 },
+  { order: 27, questionText: "'Accountability' Türkmençede näme?", questionType: "translate_en_tk", options: ["Hasap", "Jogapkärçilik / hasabat beriş", "Maliýe", "Gözegçilik"], correctIndex: 1 },
+  { order: 28, questionText: "He _____ a doctor but chose business. (could have)", questionType: "multiple_choice_grammar", options: ["could be", "could have been", "can have been", "could been"], correctIndex: 1 },
+  { order: 29, questionText: "'Deep regret' Türkmençede näme?", questionType: "translate_en_tk", options: ["Güýçli gynanç", "Çuň gynanç", "Az gynanç", "Gizlin gynanç"], correctIndex: 1 },
+  { order: 30, questionText: "'Having finished her work, she went home.' — bu gurluş näme?", questionType: "translate_en_tk", options: ["Passyw", "Gatnaşyk sözlemi (esasy sözlemden öň bolan hereket)", "Şert sözlemi", "Habarly sözlem"], correctIndex: 1 },
+];
+
+const advancedBigTestQuestions = [
+  { order: 1, questionText: "It is essential that every member _____ the meeting.", questionType: "multiple_choice_grammar", options: ["attends", "attended", "attend", "to attend"], correctIndex: 2 },
+  { order: 2, questionText: "The board recommended that the plan _____ revised.", questionType: "multiple_choice_grammar", options: ["is", "was", "be", "were"], correctIndex: 2 },
+  { order: 3, questionText: "But _____ the delay, we would have arrived on time.", questionType: "multiple_choice_grammar", options: ["with", "for", "to", "at"], correctIndex: 1 },
+  { order: 4, questionText: "'Investigate' işliginiň at sözi görnüşi?", questionType: "multiple_choice_grammar", options: ["investigating", "investigative", "investigation", "investigated"], correctIndex: 2 },
+  { order: 5, questionText: "'Transparency' Türkmençede näme?", questionType: "translate_en_tk", options: ["Görünmezlik", "Aýdyňlyk / açyklyk", "Gizlinlik", "Ýapyklyk"], correctIndex: 1 },
+  { order: 6, questionText: "She was _____ offered the job after a long selection process.", questionType: "multiple_choice_grammar", options: ["finally", "eventually", "finally offered", "offered"], correctIndex: 1 },
+  { order: 7, questionText: "A: Will it work? B: I believe _____.", questionType: "multiple_choice_grammar", options: ["it", "that", "so", "yes"], correctIndex: 2 },
+  { order: 8, questionText: "Nobody likes _____ all the time.", questionType: "multiple_choice_grammar", options: ["to criticise", "criticising", "being criticised", "to be criticising"], correctIndex: 2 },
+  { order: 9, questionText: "'Sit on the fence' Türkmençede näme?", questionType: "translate_en_tk", options: ["Hatarda oturmak", "Bitarap galmak / bir tarapy tutmamak", "Dynç almak", "Garaşmak"], correctIndex: 1 },
+  { order: 10, questionText: "'Paradox' Türkmençede näme?", questionType: "translate_en_tk", options: ["Çözgütsiz mesele", "Gapma-garşylykly, ýöne dogry ýagdaý", "Uly mesele", "Kynçylyk"], correctIndex: 1 },
+  { order: 11, questionText: "He _____ forgotten — he never misses meetings.", questionType: "multiple_choice_grammar", options: ["must have", "might have", "could have", "should have"], correctIndex: 0 },
+  { order: 12, questionText: "She _____ left already — I saw her 5 min ago.", questionType: "multiple_choice_grammar", options: ["must have", "might have", "can't have", "should have"], correctIndex: 2 },
+  { order: 13, questionText: "Not only _____ the policy worked, but costs fell too.", questionType: "multiple_choice_grammar", options: ["has", "have", "had", "is"], correctIndex: 0 },
+  { order: 14, questionText: "'Meticulous' Türkmençede näme?", questionType: "translate_en_tk", options: ["Tiz", "Jikme-jiklere ünsli / örän seresap", "Giň", "Uly"], correctIndex: 1 },
+  { order: 15, questionText: "'Exacerbate' Türkmençede näme?", questionType: "translate_en_tk", options: ["Gowulandyrmak", "Erbetleşdirmek / hasam kynlaşdyrmak", "Düzetmek", "Azaltmak"], correctIndex: 1 },
+  { order: 16, questionText: "_____ the outcome, we must remain professional.", questionType: "multiple_choice_grammar", options: ["However", "Whatever", "Whenever", "Whoever"], correctIndex: 1 },
+  { order: 17, questionText: "I would _____ to suggest that the data is incomplete.", questionType: "multiple_choice_grammar", options: ["dare", "venture", "risk", "attempt"], correctIndex: 1 },
+  { order: 18, questionText: "'Inherent' Türkmençede näme?", questionType: "translate_en_tk", options: ["Daşarky", "Tebigy / içde bar bolan", "Alnan", "Girizilen"], correctIndex: 1 },
+  { order: 19, questionText: "'Every cloud has a silver lining' Türkmençede näme?", questionType: "translate_en_tk", options: ["Bulutlar gümüş renk", "Her kynçylykda gowulyk bar", "Howa üýtgeýär", "Bulutly gün"], correctIndex: 1 },
+  { order: 20, questionText: "The document needs _____ before the deadline.", questionType: "multiple_choice_grammar", options: ["signing", "to be signed", "signed", "be signing"], correctIndex: 1 },
+  { order: 21, questionText: "Were it not _____ your help, we would have failed.", questionType: "multiple_choice_grammar", options: ["about", "with", "for", "by"], correctIndex: 2 },
+  { order: 22, questionText: "'Discrepancy' Türkmençede näme?", questionType: "translate_en_tk", options: ["Ylalaşmak", "Tapawut / gabat gelmezlik", "Deňlik", "Netije"], correctIndex: 1 },
+  { order: 23, questionText: "Admittedly, there are some risks. _____, the benefits outweigh them.", questionType: "multiple_choice_grammar", options: ["Furthermore", "Additionally", "Nevertheless", "Similarly"], correctIndex: 2 },
+  { order: 24, questionText: "'Proliferate' Türkmençede näme?", questionType: "translate_en_tk", options: ["Azalmak", "Köpelmek / çalt ýaýramak", "Gizlemek", "Ýok etmek"], correctIndex: 1 },
+  { order: 25, questionText: "It is vital that the findings _____ published immediately.", questionType: "multiple_choice_grammar", options: ["are", "were", "be", "been"], correctIndex: 2 },
+  { order: 26, questionText: "'Actions speak louder than words' Türkmençede näme?", questionType: "translate_en_tk", options: ["Sözler güýçli", "Işler sözden güýçlidir", "Köp söz gerek", "Gepleşik möhüm"], correctIndex: 1 },
+  { order: 27, questionText: "She hates _____ interrupted during meetings.", questionType: "multiple_choice_grammar", options: ["to be", "being", "be", "to being"], correctIndex: 1 },
+  { order: 28, questionText: "There _____ grounds for supposing the report was inaccurate.", questionType: "multiple_choice_grammar", options: ["is", "are", "were", "has"], correctIndex: 1 },
+  { order: 29, questionText: "'Rhetoric' Türkmençede näme?", questionType: "translate_en_tk", options: ["Matematika", "Güýçli we täsirli gepleşme / retoriki dil", "Logika", "Ylym"], correctIndex: 1 },
+  { order: 30, questionText: "C1 derejesinde iň möhüm başarnyk näme?", questionType: "translate_en_tk", options: ["Söz ýatlamak", "Çylşyrymly pikirini takyk, tebigy we täsirli aňlatmak", "Grammatika testleri", "Tiz okamak"], correctIndex: 1 },
+];
+
 const preIntermediateBigTestQuestions = [
   { order: 1, questionText: "I _____ here for five years. (work — Present Perfect)", questionType: "multiple_choice_grammar", options: ["work", "worked", "have worked", "am working"], correctIndex: 2 },
   { order: 2, questionText: "'Go' işliginiň Past Participle görnüşi?", questionType: "multiple_choice_grammar", options: ["goed", "went", "going", "gone"], correctIndex: 3 },
@@ -142,7 +210,7 @@ const intermediateBigTestQuestions = [
 ];
 
 async function seedLevel(
-  levelSlug: "BEGINNER" | "ELEMENTARY" | "PRE_INTERMEDIATE" | "INTERMEDIATE",
+  levelSlug: "BEGINNER" | "ELEMENTARY" | "PRE_INTERMEDIATE" | "INTERMEDIATE" | "UPPER_INTERMEDIATE" | "ADVANCED",
   titleEn: string,
   titleTk: string,
   description: string,
@@ -297,6 +365,30 @@ async function main() {
     elementaryUnits,
     "Başlangyç+ Derejesi — Jemleýji Synag",
     elementaryBigTestQuestions
+  );
+
+  console.log("Seeding Upper-Intermediate level...");
+  await seedLevel(
+    "UPPER_INTERMEDIATE",
+    "Upper-Intermediate",
+    "Ýokary Orta",
+    "Intermediate derejesinden soň. Garyşyk şertler, ösen modallar, causative, gatnaşyk sözlemleri, inversion, hedging we has köp.",
+    5,
+    upperIntermediateUnits,
+    "Ýokary Orta Derejesi — Jemleýji Synag",
+    upperIntermediateBigTestQuestions
+  );
+
+  console.log("Seeding Advanced level...");
+  await seedLevel(
+    "ADVANCED",
+    "Advanced",
+    "Ýokary",
+    "Iňlis dilinde ýokary derejä ýetmek. Subjunctive, nominalization, ösen passyw, idiomlar, akademiki ýazuw we C1 derejesiniň ähli başarnygy.",
+    6,
+    advancedUnits,
+    "Ýokary Derejesi — Jemleýji Synag",
+    advancedBigTestQuestions
   );
 
   console.log("Seeding Pre-Intermediate level...");
