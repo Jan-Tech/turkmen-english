@@ -1,4 +1,5 @@
 import { PrismaClient } from "../../app/generated/prisma";
+import { randomUUID } from "crypto";
 import { beginnerUnits } from "./beginner/units";
 import { elementaryUnits } from "./elementary/units";
 import { preIntermediateUnits } from "./pre-intermediate/units";
@@ -219,11 +220,17 @@ async function seedLevel(
   bigTestTitleTk: string,
   bigTestQuestions: typeof beginnerBigTestQuestions
 ) {
-  const level = await prisma.courseLevel.upsert({
-    where: { level: levelSlug as any },
-    update: {},
-    create: { level: levelSlug as any, titleEn, titleTk, description, order },
-  });
+  await prisma.$executeRawUnsafe(
+    `INSERT INTO "CourseLevel" (id, level, "titleEn", "titleTk", description, "order")
+     VALUES ($1, $2::"LevelSlug", $3, $4, $5, $6)
+     ON CONFLICT (level) DO UPDATE SET "titleEn" = EXCLUDED."titleEn", "titleTk" = EXCLUDED."titleTk"`,
+    randomUUID(), levelSlug, titleEn, titleTk, description, order
+  );
+  const rows = await prisma.$queryRawUnsafe<{ id: string }[]>(
+    `SELECT id FROM "CourseLevel" WHERE level::text = $1`,
+    levelSlug
+  );
+  const level = rows[0];
 
   for (const unit of units) {
     const dbUnit = await prisma.unit.upsert({
