@@ -65,7 +65,7 @@ export default async function DashboardPage() {
               .flatMap((u) => u.lessons)
               .filter((l) => completedLessonIds.has(l.id)).length;
             const pct = totalLessons > 0 ? Math.round((completed / totalLessons) * 100) : 0;
-            const levelSlug = level.level.toLowerCase();
+            const levelSlug = level.level.toLowerCase().replace(/_/g, "-");
 
             return (
               <Card key={level.id} className="hover:shadow-md transition-shadow">
