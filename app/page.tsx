@@ -90,11 +90,10 @@ export default function HomePage() {
             ].map((l) => (
               <div
                 key={l.en}
-                className={`rounded-xl p-4 text-center ${l.color} ${l.soon ? "opacity-60" : ""}`}
+                className={`rounded-xl p-4 text-center ${l.color}`}
               >
                 <div className="font-semibold">{l.tk}</div>
                 <div className="text-xs mt-1 opacity-70">{l.en}</div>
-                {l.soon && <div className="text-xs mt-2 font-medium">Ýakynda</div>}
               </div>
             ))}
           </div>
