@@ -32,7 +32,7 @@ export default async function LevelsPage() {
             .flatMap((u) => u.lessons)
             .filter((l) => completedIds.has(l.id)).length;
           const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-          const slug = level.level.toLowerCase();
+          const slug = level.level.toLowerCase().replace(/_/g, "-");
 
           return (
             <Card key={level.id} className="hover:shadow-lg transition-shadow">
