@@ -1,4 +1,4 @@
-import { PrismaClient } from "../../app/generated/prisma";
+import { PrismaClient } from "@prisma/client";
 import { randomUUID } from "crypto";
 import { beginnerUnits } from "./beginner/units";
 import { elementaryUnits } from "./elementary/units";

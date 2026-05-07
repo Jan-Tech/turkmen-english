@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { LevelSlug } from "@/app/generated/prisma";
+import { LevelSlug } from "@prisma/client";
 import QuizContainer from "@/components/quiz/QuizContainer";
 import Link from "next/link";
 
