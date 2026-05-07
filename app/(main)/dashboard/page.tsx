@@ -91,7 +91,7 @@ export default async function DashboardPage() {
                     <span>{level.units.length} bölüm</span>
                   </div>
                   <Link href={`/${levelSlug}`}>
-                    <Button size="sm" className={`w-full ${colors.btn}`}>
+                    <Button className={`w-full h-11 text-sm font-semibold ${colors.btn}`}>
                       {pct > 0 ? "Dowam et" : "Başla"}
                     </Button>
                   </Link>

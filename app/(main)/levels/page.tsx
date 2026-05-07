@@ -61,7 +61,7 @@ export default async function LevelsPage() {
                   {done}/{total} sapak · {level.units.length} bölüm
                 </div>
                 <Link href={`/${slug}`}>
-                  <Button className={`w-full ${colors.btn}`}>
+                  <Button size="lg" className={`w-full h-12 text-base font-semibold ${colors.btn}`}>
                     {pct > 0 ? "Dowam et" : "Başla"}
                   </Button>
                 </Link>
