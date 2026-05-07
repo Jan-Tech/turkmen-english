@@ -6,6 +6,15 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
+const levelColors: Record<string, { border: string; header: string; title: string; progress: string; btn: string }> = {
+  BEGINNER:           { border: "border-green-200",  header: "bg-green-50",  title: "text-green-800", progress: "[&>div]:bg-green-500",  btn: "bg-green-600 hover:bg-green-700 text-white" },
+  ELEMENTARY:         { border: "border-blue-200",   header: "bg-blue-50",   title: "text-blue-800",  progress: "[&>div]:bg-blue-500",   btn: "bg-blue-600 hover:bg-blue-700 text-white" },
+  PRE_INTERMEDIATE:   { border: "border-yellow-200", header: "bg-yellow-50", title: "text-yellow-800",progress: "[&>div]:bg-yellow-500", btn: "bg-yellow-500 hover:bg-yellow-600 text-white" },
+  INTERMEDIATE:       { border: "border-orange-200", header: "bg-orange-50", title: "text-orange-800",progress: "[&>div]:bg-orange-500", btn: "bg-orange-500 hover:bg-orange-600 text-white" },
+  UPPER_INTERMEDIATE: { border: "border-purple-200", header: "bg-purple-50", title: "text-purple-800",progress: "[&>div]:bg-purple-500", btn: "bg-purple-600 hover:bg-purple-700 text-white" },
+  ADVANCED:           { border: "border-red-200",    header: "bg-red-50",    title: "text-red-800",   progress: "[&>div]:bg-red-500",    btn: "bg-red-600 hover:bg-red-700 text-white" },
+};
+
 export const metadata = { title: "Baş sahypa | Iňlis Dili" };
 
 export default async function DashboardPage() {
@@ -61,31 +70,28 @@ export default async function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {levels.map((level) => {
             const totalLessons = level.units.flatMap((u) => u.lessons).length;
-            const completed = level.units
-              .flatMap((u) => u.lessons)
-              .filter((l) => completedLessonIds.has(l.id)).length;
+            const completed = level.units.flatMap((u) => u.lessons).filter((l) => completedLessonIds.has(l.id)).length;
             const pct = totalLessons > 0 ? Math.round((completed / totalLessons) * 100) : 0;
             const levelSlug = level.level.toLowerCase().replace(/_/g, "-");
+            const colors = levelColors[level.level] ?? levelColors.BEGINNER;
 
             return (
-              <Card key={level.id} className="hover:shadow-md transition-shadow">
-                <CardHeader className="pb-3">
+              <Card key={level.id} className={`hover:shadow-md transition-all border-2 ${colors.border} overflow-hidden`}>
+                <CardHeader className={`${colors.header} pb-3`}>
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-base">{level.titleTk}</CardTitle>
-                    <Badge variant={pct === 100 ? "default" : "secondary"}>{pct}%</Badge>
+                    <CardTitle className={`text-base ${colors.title}`}>{level.titleTk}</CardTitle>
+                    <Badge variant="secondary" className={`text-xs ${colors.title}`}>{pct}%</Badge>
                   </div>
                   <p className="text-sm text-gray-600">{level.description}</p>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <Progress value={pct} className="h-2" />
+                <CardContent className="space-y-3 pt-3">
+                  <Progress value={pct} className={`h-1.5 bg-gray-100 ${colors.progress}`} />
                   <div className="flex items-center justify-between text-xs text-gray-500">
-                    <span>
-                      {completed}/{totalLessons} sapak
-                    </span>
+                    <span>{completed}/{totalLessons} sapak</span>
                     <span>{level.units.length} bölüm</span>
                   </div>
                   <Link href={`/${levelSlug}`}>
-                    <Button size="sm" className="w-full" variant={pct > 0 ? "default" : "outline"}>
+                    <Button size="sm" className={`w-full ${colors.btn}`}>
                       {pct > 0 ? "Dowam et" : "Başla"}
                     </Button>
                   </Link>

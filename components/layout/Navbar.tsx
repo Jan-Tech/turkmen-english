@@ -19,8 +19,8 @@ export default function Navbar({ userName }: { userName: string }) {
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-blue-600 rounded-md flex items-center justify-center">
-              <span className="text-white font-bold text-xs">IE</span>
+            <div className="px-2 py-1 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm tracking-wide">Oka</span>
             </div>
             <span className="font-bold text-gray-900 hidden sm:block">Iňlis Dili</span>
           </Link>
