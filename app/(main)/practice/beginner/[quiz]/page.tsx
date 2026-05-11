@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import EnglishQuizContainer from "@/components/quiz/EnglishQuizContainer";
+import { BEGINNER_QUIZZES } from "@/lib/headway-beginner-questions";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -22,32 +23,35 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-export default function BeginnerPracticePage() {
+export default function BeginnerQuizPage() {
   const router = useRouter();
+  const { quiz: quizParam } = useParams<{ quiz: string }>();
+  const quizId = parseInt(quizParam, 10);
+  const quizMeta = BEGINNER_QUIZZES.find((q) => q.id === quizId);
+
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [error, setError] = useState(false);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    fetch("/api/practice/beginner")
+    if (!quizMeta) { setError(true); return; }
+    fetch(`/api/practice/beginner/${quizId}`)
       .then((r) => r.json())
       .then((data) => {
-        if (data.questions) {
+        if (data.questions?.length) {
           setQuestions(shuffle(data.questions).slice(0, 20));
         } else {
           setError(true);
         }
       })
       .catch(() => setError(true));
-  }, []);
+  }, [quizId, quizMeta]);
 
-  if (error)
+  if (!quizMeta || error)
     return (
       <div className="max-w-lg mx-auto text-center py-16 space-y-4">
         <p className="text-gray-500">Could not load questions. Please try again.</p>
-        <Link href="/practice">
-          <Button variant="outline">← Back to Practice</Button>
-        </Link>
+        <Link href="/practice"><Button variant="outline">← Back to Practice</Button></Link>
       </div>
     );
 
@@ -67,8 +71,9 @@ export default function BeginnerPracticePage() {
         <div className="bg-white rounded-2xl border p-8 text-center space-y-5">
           <div className="text-5xl">📝</div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Beginner Practice Test</h1>
-            <p className="text-gray-500 mt-1">Grammar &amp; Vocabulary</p>
+            <p className="text-xs text-gray-400 uppercase tracking-wide mb-1">{quizMeta.label}</p>
+            <h1 className="text-2xl font-bold text-gray-900">{quizMeta.title}</h1>
+            <p className="text-gray-500 mt-1">{quizMeta.subtitle}</p>
           </div>
           <div className="grid grid-cols-3 gap-3 text-center">
             <div className="bg-gray-50 rounded-xl p-3">
@@ -99,7 +104,7 @@ export default function BeginnerPracticePage() {
       </Link>
       <EnglishQuizContainer
         questions={questions}
-        title="Beginner Practice Test"
+        title={`${quizMeta.title} — ${quizMeta.subtitle}`}
         backHref="/practice"
         onBack={() => router.push("/practice")}
       />
