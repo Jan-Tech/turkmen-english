@@ -1,17 +1,16 @@
 import Link from "next/link";
 import { BEGINNER_QUIZZES } from "@/lib/headway-beginner-questions";
 import { ELEMENTARY_QUIZZES } from "@/lib/headway-elementary-questions";
+import { PRE_INTERMEDIATE_QUIZZES } from "@/lib/headway-preintermediate-questions";
+import { INTERMEDIATE_QUIZZES } from "@/lib/headway-intermediate-questions";
+import { UPPER_INTERMEDIATE_QUIZZES } from "@/lib/headway-upper-intermediate-questions";
+import { ADVANCED_QUIZZES } from "@/lib/headway-advanced-questions";
 
 export const metadata = { title: "Practice | Iňlis Dili" };
 
-interface QuizCardProps {
-  title: string;
-  subtitle: string;
-  label: string;
-  href: string;
-}
-
-function QuizCard({ title, subtitle, label, href }: QuizCardProps) {
+function QuizCard({ title, subtitle, label, href }: {
+  title: string; subtitle: string; label: string; href: string;
+}) {
   return (
     <div className="rounded-xl border-2 border-gray-100 bg-white p-5 flex items-center justify-between gap-4 hover:shadow-md transition-shadow">
       <div className="space-y-0.5">
@@ -34,6 +33,15 @@ function QuizCard({ title, subtitle, label, href }: QuizCardProps) {
   );
 }
 
+const SECTIONS = [
+  { label: "Beginner — New Headway",          quizzes: BEGINNER_QUIZZES,          basePath: "/practice/beginner" },
+  { label: "Elementary — New Headway",         quizzes: ELEMENTARY_QUIZZES,         basePath: "/practice/elementary" },
+  { label: "Pre-Intermediate — New Headway",   quizzes: PRE_INTERMEDIATE_QUIZZES,   basePath: "/practice/pre-intermediate" },
+  { label: "Intermediate — New Headway",       quizzes: INTERMEDIATE_QUIZZES,       basePath: "/practice/intermediate" },
+  { label: "Upper-Intermediate — New Headway", quizzes: UPPER_INTERMEDIATE_QUIZZES, basePath: "/practice/upper-intermediate" },
+  { label: "Advanced — New Headway",           quizzes: ADVANCED_QUIZZES,           basePath: "/practice/advanced" },
+];
+
 export default function PracticePage() {
   return (
     <div className="max-w-3xl mx-auto space-y-10">
@@ -44,35 +52,22 @@ export default function PracticePage() {
         </p>
       </div>
 
-      <div className="space-y-3">
-        <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
-          Beginner — New Headway
-        </h2>
-        {BEGINNER_QUIZZES.map((quiz) => (
-          <QuizCard
-            key={quiz.id}
-            title={quiz.title}
-            subtitle={quiz.subtitle}
-            label={quiz.label}
-            href={`/practice/beginner/${quiz.id}`}
-          />
-        ))}
-      </div>
-
-      <div className="space-y-3">
-        <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
-          Elementary — New Headway
-        </h2>
-        {ELEMENTARY_QUIZZES.map((quiz) => (
-          <QuizCard
-            key={quiz.id}
-            title={quiz.title}
-            subtitle={quiz.subtitle}
-            label={quiz.label}
-            href={`/practice/elementary/${quiz.id}`}
-          />
-        ))}
-      </div>
+      {SECTIONS.map((section) => (
+        <div key={section.label} className="space-y-3">
+          <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
+            {section.label}
+          </h2>
+          {section.quizzes.map((quiz) => (
+            <QuizCard
+              key={quiz.id}
+              title={quiz.title}
+              subtitle={quiz.subtitle}
+              label={quiz.label}
+              href={`${section.basePath}/${quiz.id}`}
+            />
+          ))}
+        </div>
+      ))}
     </div>
   );
 }

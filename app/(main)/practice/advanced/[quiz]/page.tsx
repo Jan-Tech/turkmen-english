@@ -1,15 +1,15 @@
 "use client";
 import { useParams } from "next/navigation";
 import LevelQuizPage from "@/components/quiz/LevelQuizPage";
-import { BEGINNER_QUIZZES } from "@/lib/headway-beginner-questions";
+import { ADVANCED_QUIZZES } from "@/lib/headway-advanced-questions";
 
-export default function BeginnerQuizPage() {
+export default function AdvancedQuizPage() {
   const { quiz } = useParams<{ quiz: string }>();
   const quizId = parseInt(quiz, 10);
   return (
     <LevelQuizPage
-      quizMeta={BEGINNER_QUIZZES.find((q) => q.id === quizId)}
-      apiPath={`/api/practice/beginner/${quizId}`}
+      quizMeta={ADVANCED_QUIZZES.find((q) => q.id === quizId)}
+      apiPath={`/api/practice/advanced/${quizId}`}
     />
   );
 }
