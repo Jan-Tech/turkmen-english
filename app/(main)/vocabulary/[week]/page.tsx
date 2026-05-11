@@ -3,6 +3,8 @@ import { prisma } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
 import VocabWeekGrid from "@/components/vocabulary/VocabWeekGrid";
+import PracticeSection from "@/components/vocabulary/PracticeSection";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default async function VocabWeekPage({
   params,
@@ -60,17 +62,39 @@ export default async function VocabWeekPage({
         </div>
       </div>
 
-      <VocabWeekGrid
-        words={section.words.map((w) => ({
-          id: w.id,
-          wordEn: w.wordEn,
-          wordTk: w.wordTk,
-          partOfSpeech: w.partOfSpeech,
-          exampleEn: w.exampleEn,
-          exampleTk: w.exampleTk,
-        }))}
-        initialLearnedIds={learnedIds}
-      />
+      <Tabs defaultValue="vocabulary">
+        <TabsList>
+          <TabsTrigger value="vocabulary">Vocabulary</TabsTrigger>
+          <TabsTrigger value="practice">Practice</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="vocabulary" className="mt-4">
+          <VocabWeekGrid
+            words={section.words.map((w) => ({
+              id: w.id,
+              wordEn: w.wordEn,
+              wordTk: w.wordTk,
+              partOfSpeech: w.partOfSpeech,
+              exampleEn: w.exampleEn,
+              exampleTk: w.exampleTk,
+            }))}
+            initialLearnedIds={learnedIds}
+          />
+        </TabsContent>
+
+        <TabsContent value="practice" className="mt-4">
+          <PracticeSection
+            words={section.words.map((w) => ({
+              id: w.id,
+              wordEn: w.wordEn,
+              wordTk: w.wordTk,
+              partOfSpeech: w.partOfSpeech,
+              exampleEn: w.exampleEn,
+              exampleTk: w.exampleTk,
+            }))}
+          />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

@@ -9,6 +9,7 @@ const navItems = [
   { href: "/dashboard", label: "Baş sahypa" },
   { href: "/levels", label: "Dil Derejesi" },
   { href: "/vocabulary", label: "504 Söz" },
+  { href: "/practice", label: "Practice" },
 ];
 
 export default function Navbar({ userName }: { userName: string }) {
