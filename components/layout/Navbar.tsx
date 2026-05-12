@@ -10,6 +10,7 @@ const navItems = [
   { href: "/levels", label: "Dil Derejesi" },
   { href: "/vocabulary", label: "504 Söz" },
   { href: "/practice", label: "Practice" },
+  { href: "/games", label: "🎮 Oýunlar" },
 ];
 
 export default function Navbar({ userName }: { userName: string }) {
