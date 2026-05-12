@@ -4,6 +4,16 @@ export const metadata = { title: "Oýunlar | Iňlis Dili" };
 
 const games = [
   {
+    href: "/games/spelling-bee",
+    emoji: "🐝",
+    titleTk: "Spelling Bee",
+    titleEn: "Spelling Bee",
+    desc: "Terjimesini görüp, iňlisçe sözi dogry ýaz. Her maslahat bal aýyrýar!",
+    color: "yellow",
+    bg: "bg-yellow-50", border: "border-yellow-300", btn: "bg-yellow-400 hover:bg-yellow-500 text-gray-900", tag: "bg-yellow-100 text-yellow-700",
+    badge: "Täze!",
+  },
+  {
     href: "/games/daily-word",
     emoji: "🌟",
     titleTk: "Gündelik Söz",

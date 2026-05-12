@@ -44,7 +44,9 @@ export default function Navbar({ userName }: { userName: string }) {
           </nav>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-sm text-gray-600 hidden sm:block">Salam, {userName}</span>
+          <Link href="/profile" className="text-sm text-gray-600 hidden sm:block hover:text-blue-600 transition-colors">
+            Salam, {userName}
+          </Link>
           <Button
             size="sm"
             onClick={() => signOut({ callbackUrl: "/" })}

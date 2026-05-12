@@ -12,7 +12,7 @@ const schema = z.object({
     (v) => emailRegex.test(v) || phoneRegex.test(v),
     "Email ýa-da +993 bilen başlanýan Türkmen telefon belgisi girizin"
   ),
-  password: z.string().min(8, "Parol azyndan 8 nyşan bolmaly"),
+  password: z.string().min(4, "Parol azyndan 4 nyşan bolmaly").max(25, "Parol 25 nyşandan köp bolmaly däldir"),
 });
 
 export async function POST(req: NextRequest) {

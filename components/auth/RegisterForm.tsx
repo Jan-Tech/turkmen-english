@@ -26,8 +26,12 @@ export default function RegisterForm() {
       setError("Parollar deň däl");
       return;
     }
-    if (password.length < 8) {
-      setError("Parol azyndan 8 nyşan bolmaly");
+    if (password.length < 4) {
+      setError("Parol azyndan 4 nyşan bolmaly");
+      return;
+    }
+    if (password.length > 25) {
+      setError("Parol 25 nyşandan köp bolmaly däldir");
       return;
     }
 
@@ -90,7 +94,7 @@ export default function RegisterForm() {
             <Input
               id="password"
               type="password"
-              placeholder="Azyndan 8 nyşan"
+              placeholder="4–25 nyşan"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

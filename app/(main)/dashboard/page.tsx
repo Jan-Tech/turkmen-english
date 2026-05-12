@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import StreakWidget from "@/components/StreakWidget";
 
 const levelColors: Record<string, { border: string; header: string; title: string; progress: string; btn: string }> = {
   BEGINNER:           { border: "border-green-200",  header: "bg-green-50",  title: "text-green-800", progress: "[&>div]:bg-green-500",  btn: "bg-green-600 hover:bg-green-700 text-white" },
@@ -45,6 +46,9 @@ export default async function DashboardPage() {
         </h1>
         <p className="text-gray-600 mt-1">Öwrenmäge dowam ediň</p>
       </div>
+
+      {/* Streak */}
+      <StreakWidget />
 
       {/* Quick stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
